@@ -2,9 +2,9 @@
 
 function dbConnect() {
   $dbaddress = "localhost";
-  $dbuser = "chance";
-  $dbpass = "password";
-  $dbname = "";
+  $dbuser = "YOUR_DB_USER";
+  $dbpass = "YOUR_DB_PASS";
+  $dbname = "YOUR_DB_NAME";
   
 	$conn = new mysqli($dbaddress, $dbuser, $dbpass, $dbname);
 
