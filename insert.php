@@ -4,18 +4,18 @@
     
     $firstname = $_POST[firstname];
     $lastname = $_POST[lastname];
-    $major = $_POST[major]    
+    $major = $_POST[major];
         
     $conn = dbConnect();
     
     // Run sql insert into query to add data to the table
     $sql = "INSERT INTO studentform (FirstName, LastName, Major) VALUES (?,?,?)";
-    if ($stmt = $mysqli->prepare($sql)) {
+    if ($stmt = $conn->prepare($sql)) {
         /* bind parameters for markers */
         $stmt->bind_param("sss", $firstname, $lastname, $major);
         /* execute query */
         $stmt->execute();
-        printf("%d Row inserted.\n", $stmt->affected_rows);
+        printf("\n%d Row inserted.\n", $stmt->affected_rows);
         $stmt->close();
     }
     $conn->close();
