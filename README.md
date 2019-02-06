@@ -1,6 +1,7 @@
-# php-mysql-tutorial
+# php-mysql-tutorial For IT210A @ BYU
 Instructions for PHP / MySQL / HTML Form In-Class Exercise.
-NOTE: If you download this repository, the file creation steps are done for you
+NOTE: If you download this repository, the file creation steps are done for you. 
+To see the finished code, look at the 'finished' branch.
 
 ## TASK A: Create a database for storing data
 
