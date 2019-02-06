@@ -6,25 +6,28 @@
 <? 
 include 'settings.php';
 
-// Check connection and throw error if it fails
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+$firstname = $_POST[firstname];
+$lastname = $_POST[lastname];
+$major = $_POST[major]
+    
+$conn = dbConnect();
 
 // Run sql insert into query to add data to the table
-$sql = "INSERT INTO $table (FirstName, LastName, Major) VALUES ('$_POST[firstname]','$_POST[lastname]', '$_POST[major]')";
+$sql = "INSERT INTO studentform (FirstName, LastName, Major) VALUES (?,?,?)";
 // WARNING: This is very bad because it does not protect against SQL Injection!!!
 // You should use prepared statements in the lab. 
 // See https://www.w3schools.com/php/php_mysql_prepared_statements.asp for a nice example
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+if ($stmt = $mysqli->prepare($sql)) {
 
+    /* bind parameters for markers */
+    $stmt->bind_param("sss", $firstname, $lastname, $major);
+
+    /* execute query */
+    $stmt->execute();
+    printf("%d Row inserted.\n", $stmt->affected_rows);
+    $stmt->close();
+}
 $conn->close();
 
 ?> 
