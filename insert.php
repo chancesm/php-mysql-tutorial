@@ -2,9 +2,9 @@
     echo "This php page sends the data collected in the form.html file and inserts it into the MySQL database\n\n";
     include 'settings.php'; //DB Connect Function Defined Here
     
-    $firstname = $_POST[firstname];
-    $lastname = $_POST[lastname];
-    $major = $_POST[major];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $major = $_POST['major'];
         
     $conn = dbConnect();
     
