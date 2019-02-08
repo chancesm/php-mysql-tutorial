@@ -72,9 +72,9 @@ function dbConnect() {
   
 	$conn = new mysqli($dbaddress, $dbuser, $dbpass, $dbname);
 
-  if ($mysqli->connect_error) {
-      die('Connect Error (' . $mysqli->connect_errno . ') '
-            . $mysqli->connect_error);
+  if ($conn->connect_error) {
+      die('Connect Error (' . $conn->connect_errno . ') '
+            . $conn->connect_error);
   }
 	  return $conn;
 }
@@ -89,15 +89,15 @@ Create the insert.php page with the following code and put it in your /var/www/ 
     echo "This php page sends the data collected in the form.html file and inserts it into the MySQL database\n\n";
     include 'settings.php'; //DB Connect Function Defined Here
     
-    $firstname = $_POST[firstname];
-    $lastname = $_POST[lastname];
-    $major = $_POST[major];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $major = $_POST['major'];
         
     $conn = dbConnect();
     
     // Run sql insert into query to add data to the table
     $sql = "INSERT INTO studentform (FirstName, LastName, Major) VALUES (?,?,?)";
-    if ($stmt = $mysqli->prepare($sql)) {
+    if ($stmt = $conn->prepare($sql)) {
         /* bind parameters for markers */
         $stmt->bind_param("sss", $firstname, $lastname, $major);
         /* execute query */
