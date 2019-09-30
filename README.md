@@ -64,20 +64,11 @@ Create the settings.php page with the following code and put it in your /var/www
 ```php
 <?php
 
-function dbConnect() {
   $dbaddress = "localhost";
   $dbuser = "YOUR_DB_USER";
   $dbpass = "YOUR_DB_PASS";
   $dbname = "YOUR_DB_NAME";
-  
-	$conn = new mysqli($dbaddress, $dbuser, $dbpass, $dbname);
 
-  if ($conn->connect_error) {
-      die('Connect Error (' . $conn->connect_errno . ') '
-            . $conn->connect_error);
-  }
-	  return $conn;
-}
 ?>
 ```
 
@@ -93,7 +84,7 @@ Create the insert.php page with the following code and put it in your /var/www/ 
     $lastname = $_POST['lastname'];
     $major = $_POST['major'];
         
-    $conn = dbConnect();
+    $conn = new mysqli($dbaddress, $dbuser, $dbpass, $dbname);
     
     // Run sql insert into query to add data to the table
     $sql = "INSERT INTO studentform (FirstName, LastName, Major) VALUES (?,?,?)";
